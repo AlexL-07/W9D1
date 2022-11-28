@@ -16,5 +16,10 @@ Function.prototype.myBind = function (context, ...bindArgs){
 }
 
 function curriedSum(numArgs){
-    
+    let numbers = [];
+    const _curriedSum = (...arg) => {
+        numbers.push(arg);
+        numbers.reduce((acc, el) => acc + el)
+    }
+    return _curriedSum
 }
