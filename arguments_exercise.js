@@ -15,11 +15,24 @@ Function.prototype.myBind = function (context, ...bindArgs){
     }
 }
 
-function curriedSum(numArgs){
-    let numbers = [];
-    const _curriedSum = (...arg) => {
-        numbers.push(arg);
-        numbers.reduce((acc, el) => acc + el)
+// function curriedSum(numArgs){
+//     let numbers = [];
+//     const _curriedSum = (...arg) => {
+//         numbers.push(arg);
+//         numbers.reduce((acc, el) => acc + el)
+//     }
+//     return _curriedSum
+// }
+
+Function.prototype.curry = function (numArgs){
+    let nums = [];
+    let func = this;
+    return function _myCurry(ele){
+        nums.push(ele);
+        if(nums.length < numArgs){
+            return _myCurry;
+        }else{
+            return func(...nums);
+        }
     }
-    return _curriedSum
 }
